@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Digital Library</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Basic styles for responsiveness and card layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            width: 30%;
+            height: auto;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(13, 214, 214, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: rgb(0, 221, 255);
+        }
+
+        .card img {
+            width: 100%;
+            height: 50%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-content {
+            padding: 10px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .card-author {
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            display: none;
+        }
+
+        .see-more-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            outline: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg mb-5"
+        style="background-image: linear-gradient(to right,white,#2196f3);color: white;">
+        <div class="container-fluid">
+            <img src="logo.png" width="100px" height="auto">
+        </div>
+    </nav>
+    <div style="right: 10%;" >
+        <a href="developerDashboard.html"><img src="left.png" width="50px" height="auto"></a>
+        </div>
+    <div class="container mt-4">
+        <h1>Digital Library</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search for books">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="searchBooks()">Search</button>
+            </div>
+        </div>
+        <div style="display: block;margin: 0 auto;">
+            <p><i>Powerd by Open Curriculam</i></p>
+        </div>
+        <div class="row" id="results">
+        </div>
+        <div class="container" style="display:none" id="loader">
+            <div class="spinner-border text-primary align-middle" style="display: block;margin: 0 auto;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function searchBooks() {
+            document.getElementById("loader").style.display = "block"
+            var searchTerm = document.getElementById('searchInput').value;
+            var url = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm + '&maxResults=30'; // Update maxResults to desired value
+
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                success: function (data) {
+                    displayBooks(data);
+                },
+                error: function () {
+                    console.log('Error occurred while fetching data');
+                }
+            });
+        }
+
+        // Modify the displayBooks function to include a click event on the book card
+        function displayBooks(data) {
+            var resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            var books = data.items || [];
+            document.getElementById("loader").style.display = "none";
+            books.forEach(function (book) {
+                var bookInfo = book.volumeInfo;
+                var title = bookInfo.title;
+                var authors = bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown Author';
+                var thumbnail = bookInfo.imageLinks ? (bookInfo.imageLinks.thumbnail || 'https://via.placeholder.com/128x192.png?text=No+Image') : 'https://via.placeholder.com/128x192.png?text=No+Image';
+                var description = bookInfo.description ? bookInfo.description : 'No description available';
+                var previewLink = bookInfo.previewLink ? bookInfo.previewLink : '#';
+
+                var card = document.createElement('div');
+                card.classList.add('card');
+                var cardContent = `
+            <a href="${previewLink}" target="_blank">
+                <img src="${thumbnail}" alt="Book Thumbnail">
+                <div class="card-content">
+                    <h3 class="card-title">${title}</h3>
+                    <p class="card-author"><strong>Author:</strong> ${authors}</p>
+                    <p class="card-description">${description}</p>
+                    <p><strong>Read Online</strong></p>
+                </div>
+            </a>
+        `;
+                card.innerHTML = cardContent;
+
+                resultsDiv.appendChild(card);
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

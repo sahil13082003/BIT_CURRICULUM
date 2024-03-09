@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-image: linear-gradient(to right,white,#deb35d);color: white;">
+    <div class="container-fluid">
+      <img src="AICTE Logo.png" width="100px" height="auto">
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <div class="col-md-6">
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Developer</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">BOS</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio3">University</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-5 mb-5">
+    <div class="alert alert-success mb-4" role="alert" id="alertGreen" style="display: none;">
+    </div>
+    <div class="alert alert-danger mb-4" role="alert" id="alertRed" style="display: none;">
+    </div>
+
+    <div id="instructor">
+      <form class="row g-3 needs-validation border border-primary rounded p-5" novalidate>
+        <h1 style="color: #2196f3;text-align:center" class="mb-5">Sign up</h1>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="instructorName" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="instructorEmail" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Password</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            <input type="password" class="form-control" id="instructorPassword" aria-describedby="inputGroupPrepend"
+              required>
+            <div class="invalid-feedback">
+              Please Enter you password
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Years of Experience</label>
+          <input type="text" class="form-control" id="instructorExperience" required>
+          <div class="invalid-feedback">
+            Please provide you Experience
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Current working Institute Name</label>
+          <input type="text" class="form-control" id="instructorInstitute" required>
+          <div class="invalid-feedback">
+            Please provide your current Institute name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Gender</label>
+          <select class="form-select" aria-label="Default select example" id="instructorGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Mobile Number</label>
+          <input type="tel" class="form-control" id="instructorMobile" required>
+          <div class="invalid-feedback">
+            Please provide your mobile number
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputState" class="form-label">Department</label>
+          <select class="form-select" id="instructorDepartment">
+            <option selected>Choose...</option>
+            <option value="Computer">Computer</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Civil">Civil</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div id="hod" style="display: none;">
+      <form class="row g-3 needs-validation border border-primary rounded p-5" novalidate>
+        <h1 style="color: #2196f3;text-align:center" class="mb-5">Sign up</h1>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="hodName" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="hodEmail" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Password</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            <input type="password" class="form-control" id="hodPassword" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please Enter you password
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Current working Institute Name</label>
+          <input type="text" class="form-control" id="hodInstitute" required>
+          <div class="invalid-feedback">
+            Please provide your current Institute name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Gender</label>
+          <select class="form-select" aria-label="Default select example" id="hodGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Mobile Number</label>
+          <input type="tel" class="form-control" id="hodMobile" required>
+          <div class="invalid-feedback">
+            Please provide your mobile number
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputState" class="form-label">Department</label>
+          <select class="form-select" id="hodDepartment">
+            <option selected>Choose...</option>
+            <option value="Computer">Computer</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Civil">Civil</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div id="student" style="display: none;">
+      <form class="row g-3 needs-validation border border-primary rounded p-5" novalidate>
+        <h1 style="color: #2196f3;text-align:center" class="mb-5">Sign up</h1>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">College Unique Number or AICTE P-ID</label>
+          <input type="text" class="form-control" id="uniqueNumber" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">University/College/Institute Name :</label>
+          <input type="email" class="form-control" id="instituteName" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">College Website</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="collegeWebsite" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please Enter you password
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">TOP/Nodal First Name</label>
+          <input type="text" class="form-control" id="nodalFirstName" required>
+          <div class="invalid-feedback">
+            Please provide your Nodal name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">TOP/Nodal last Name</label>
+          <input type="text" class="form-control" id="nodalLastName" required>
+          <div class="invalid-feedback">
+            Please provide your Nodal name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">State/UT</label>
+          <select class="form-select" aria-label="Default select example" id="state">
+            <option value="male">Maharashtra</option>
+            <option value="female">Bihar</option>
+            <option value="female">Delhi</option>
+            <option value="female">Utter Pradesh</option>
+            <option value="female">Madhya Pradesh</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">City</label>
+          <select class="form-select" aria-label="Default select example" id="city">
+            <option value="male">Ambala</option>
+            <option value="female">Panipat</option>
+            <option value="female">Sonipat</option>
+            <option value="female">Jind</option>
+            <option value="female">Sirsa/option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Head of Institute Email</label>
+          <input type="tel" class="form-control" id="instituteEmail" required>
+          <div class="invalid-feedback">
+            Please provide your mobile number
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">TOP/Nodal Email</label>
+          <input type="text" class="form-control" id="nodalEmail" required>
+          <div class="invalid-feedback">
+            Please provide your Unique ID
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Password</label>
+          <input type="text" class="form-control" id="password" required>
+          <div class="invalid-feedback">
+            Please provide your Unique ID
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Confirm Password</label>
+          <input type="text" class="form-control" id="confirmPassword" required>
+          <div class="invalid-feedback">
+            Please provide your Unique ID
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">TOP/Nodal Contact Number</label>
+          <input type="text" class="form-control" id="nodalContactNumber" required>
+          <div class="invalid-feedback">
+            Please provide your Unique ID
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-outline-primary mt-5" style="display: block;margin: 0 auto;" type="button"
+        id="validate">Sign up</button>
+    </div>
+    <div class="spinner-border text-primary mt-5" role="status"
+      style="margin-right: 50%;margin-left: 50%;display: none;" id="loader1">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+    import { getFirestore, collection, doc, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCskC8FgXJxC48XzpCDRVmE9Kng2OyAbpk",
+      authDomain: "open-curriculum-de09c.firebaseapp.com",
+      projectId: "open-curriculum-de09c",
+      storageBucket: "open-curriculum-de09c.appspot.com",
+      messagingSenderId: "425347625827",
+      appId: "1:425347625827:web:5603db72da26bfe87ad956",
+      measurementId: "G-S9YVNWDKBT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    document.getElementById("validate").onclick = validateInstructorForm;
+    document.getElementById("btnradio1").addEventListener("click", () => {
+      document.getElementById("instructor").style.display = "inline-block";
+      document.getElementById("hod").style.display = "none";
+      document.getElementById("student").style.display = "none";
+      document.getElementById("validate").onclick = validateInstructorForm;
+    })
+    document.getElementById("btnradio2").addEventListener("click", () => {
+      document.getElementById("instructor").style.display = "none";
+      document.getElementById("hod").style.display = "inline-block";
+      document.getElementById("student").style.display = "none";
+      document.getElementById("validate").onclick = validateHODForm;
+    })
+    document.getElementById("btnradio3").addEventListener("click", () => {
+      document.getElementById("instructor").style.display = "none";
+      document.getElementById("hod").style.display = "none";
+      document.getElementById("student").style.display = "inline-block";
+      document.getElementById("validate").onclick = validateStudentForm;
+    })
+
+    function validateInstructorForm() {
+      const instructorName = document.getElementById('instructorName').value;
+      const instructorEmail = document.getElementById('instructorEmail').value;
+      const instructorPassword = document.getElementById('instructorPassword').value;
+      const instructorExperience = document.getElementById('instructorExperience').value;
+      const instructorInstitute = document.getElementById('instructorInstitute').value;
+      const instructorGender = document.getElementById('instructorGender').value;
+      const instructorMobile = document.getElementById('instructorMobile').value;
+      const instructorDepartment = document.getElementById('instructorDepartment').value;
+
+      if (
+        !instructorName ||
+        !instructorEmail ||
+        !instructorPassword ||
+        !instructorExperience ||
+        !instructorInstitute ||
+        !instructorGender ||
+        !instructorMobile ||
+        instructorDepartment === 'Choose...'
+      ) {
+        alert('Instructor Should fill the from Completly');
+        return false;
+      }
+      var parameter = { instructorName, email: instructorEmail, password: instructorPassword, instructorExperience, instructorInstitute, instructorGender, instructorMobile, instructorDepartment }
+      var path = "Teachers"
+      signUp(parameter, path)
+    }
+    function validateHODForm() {
+      const hodName = document.getElementById('hodName').value;
+      const hodEmail = document.getElementById('hodEmail').value;
+      const hodPassword = document.getElementById('hodPassword').value;
+      const hodInstitute = document.getElementById('hodInstitute').value;
+      const hodGender = document.getElementById('hodGender').value;
+      const hodMobile = document.getElementById('hodMobile').value;
+      const hodDepartment = document.getElementById('hodDepartment').value;
+      if (
+        !hodName ||
+        !hodEmail ||
+        !hodPassword ||
+        !hodInstitute ||
+        !hodGender ||
+        !hodMobile ||
+        hodDepartment === 'Choose...'
+      ) {
+        alert('Hod Should fill the from Completly');
+        return false;
+      }
+      var parameter = { hodName, email: hodEmail, password: hodPassword, hodInstitute, hodGender, hodMobile, hodDepartment }
+      var path = "HoD"
+      signUp(parameter, path)
+    }
+    function validateStudentForm() {
+      const uniqueNumber = document.getElementById("uniqueNumber").value;;
+      const instituteName = document.getElementById("instituteName").value;;
+      const collegeWebsite = document.getElementById("collegeWebsite").value;;
+      const nodalFirstName = document.getElementById("nodalFirstName").value;;
+      const nodalLastName = document.getElementById("nodalLastName").value;;
+      const state = document.getElementById("state").value;;
+      const city = document.getElementById("city").value;;
+      const instituteEmail = document.getElementById("instituteEmail").value;;
+      const nodalEmail = document.getElementById("nodalEmail").value;;
+      const password = document.getElementById("password").value;;
+      const confirmPassword = document.getElementById("confirmPassword").value;;
+      const nodalContactNumber = document.getElementById("nodalContactNumber").value;;
+
+      if (
+        !uniqueNumber ||
+        !instituteName ||
+        !collegeWebsite ||
+        !nodalFirstName ||
+        !nodalLastName ||
+        !state ||
+        !city ||
+        !instituteEmail ||
+        !nodalEmail ||
+        !password ||
+        !confirmPassword === 'Choose...'
+      ) {
+        alert('Student Should fill the from Completly');
+        return false;
+      }
+      var parameter = { uniqueNumber, email: instituteEmail, password: password, instituteName, collegeWebsite, nodalFirstName, nodalLastName, state, city, nodalEmail, };
+      var path = "Student"
+      signUp(parameter, path);
+    }
+
+    function signUp(parameter, path) {
+      document.getElementById("loader1").style.display = "block"
+      var email = parameter.email;
+      var password = parameter.password
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          document.getElementById("loader1").style.display = "block"
+          document.getElementById("alertGreen").style.display = "block"
+          document.getElementById("alertGreen").innerHTML = "Sign up successfully"
+          stateChange(parameter, path)
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+          document.getElementById("alertRed").style.display = "block"
+          document.getElementById("alertRed").innerHTML = errorMessage;
+          document.getElementById("loader1").style.display = "none"
+          setInterval(() => {
+            document.getElementById("alertRed").style.display = "none"
+          }, 5000)
+          console.log(errorMessage);
+        });
+    }
+
+    function stateChange(parameter, path) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          localStorage.setItem("dataId", uid);
+          addData(parameter, path, uid); // Pass the UID to the addData function
+        } else {
+          console.log("User is signed out");
+        }
+      });
+    }
+
+    async function addData(parameter, path, uid) {
+      document.getElementById("alertGreen").innerHTML = "Data saving...";
+      try {
+        const docRef = await setDoc(doc(db, path, uid), parameter);
+        document.getElementById("alertGreen").innerHTML = "Data saved successfully";
+        document.getElementById("loader1").style.display = "none"
+        setInterval(() => {
+          document.getElementById("alertGreen").style.display = "none"
+        }, 3000)
+        if (path == "Student") {
+          window.location.href = "university.html"
+        } else {
+          if (path == "HoD") {
+            window.location.href = "BOSDashboard.html"
+          } else {
+            if (path = "Teachers") {
+              window.location.href = "developerDashboard.html"
+            } else {
+              console.log("no path found")
+            }
+          }
+        }
+        console.log("Data saved successfully");
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        document.getElementById("alertRed").style.display = "block"
+        document.getElementById("alertRed").innerHTML = e;
+        document.getElementById("loader1").style.display = "none"
+        setInterval(() => {
+          document.getElementById("alertRed").style.display = "none"
+        }, 3000)
+      }
+    }
+  </script>
+</body>
+
+</html>

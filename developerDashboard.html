@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instructor</title>
+  <script src="javascript.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    .description-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .description-container {
+      scrollbar-width: none;
+    }
+
+    .text-shadow {
+      color: white;
+      text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-image: linear-gradient(to right,white,#2196f3);color: white;">
+    <div class="container-fluid">
+      <img src="logo.png" width="100px" height="auto">
+      <h4 class="text-shadow">Developer Dashboard</h4>
+      <div class="dropdown-center dropdown-menu-dark" style="margin-right: 50px;">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <span><img src="man.png" width="30px" height="30px"></span>
+        </button>
+        <ul class="dropdown-menu" style="background-color: #2196f3;">
+          <li><a class="dropdown-item" href="#"><b>Profile</b></a></li>
+          <li><a class="dropdown-item" href="signUp.html"><b>Sign up</b></a></li>
+          <li><a class="dropdown-item" href="signin.html"><b>Sign in</b></a></li>
+          <li><a class="dropdown-item text-danger" href="#" id="signOut"><b>Sign out</b></a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg" style="background-image: linear-gradient(to right,white,#2196f3);color: white;">
+    <button type="button" class="btn btn-outline-primary m-2" id="createCourse">Create
+      Course</button>
+    <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModa3"
+      id="yourTask">Your
+      Task</button>
+    <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModa4"
+      id="sendInvitation">Send
+      Invitation</button>
+    <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModa5"
+      id="acceptInvitaion">Accept Invitation</button>
+
+    </div>
+  </nav>
+
+  <!-- Modal for your task -->
+  <div class="modal fade" id="exampleModa3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Your Task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row row-cols-1 row-cols-md-3 g-4" id="fetchTask">
+            <!---Fetch Task here-->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for send Invitation -->
+  <div class="modal fade" id="exampleModa4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Invite Collobrator</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row row-cols-1 row-cols-md-3 g-4" id="fetchProfile">
+            <!---Fetch Task here-->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!---modal for accept invitation-->
+  <div class="modal fade" id="exampleModa5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Invitations</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="list-group" id="fetchInvitations">
+            <!--Fetch invitations here-->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--- Image Sliders-->
+  <div class="text-center">
+    <div class="row">
+      <div class="col-md-8">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="slider2.jpg" class="d-block w-100 rounded-2" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="slider4.png" class="d-block w-100 rounded-2" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="slider1.png" class="d-block w-100 rounded-2" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col border border-2 border-primary-subtle rounded-2">
+        <h2 style="color: #2196f3;">Announcement</h2>
+        <div class="border border-primary-subtle"></div>
+        <div class="mt-5">
+          <marquee direction="up" class="p-2" width="auto" height="370px">
+            <div>
+              <img src="notice.png" alt="Image"><a href="" style="text-decoration: none;">Approval Process Handbook
+                2024-2027</a>
+              <hr>
+  
+              <img src="notice.png" alt="Image"><a href="" style="text-decoration: none;">Public Notice for Admission to
+                Working Professionals</a>
+              <hr>
+              <img src="notice.png" alt="Image"><a href="" style="text-decoration: none;">Revised Academic Calender
+                2023-24</a>
+              <hr>
+              <a href=""
+                style="text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For IVRS
+                Dial 011-29581514</a>
+              <hr>
+              <img src="notice.png" alt="Image"><a href="" style="text-decoration: none;">Sardar Unity Trinity Quiz</a>
+              <hr>
+  
+          </marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--- Courses Cards-->
+  <div class="container mt-4 mb-5">
+    <h2 style="color: #2196f3;" class="m-3">My Courses</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="placeholder1">
+      <div class="col">
+        <div class="card" aria-hidden="true">
+          <div class="card-body">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" aria-hidden="true">
+          <div class="card-body">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" aria-hidden="true">
+          <div class="card-body">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scrolling-container" style="overflow-x: auto;white-space: nowrap;display: none;" id="fetchCards">
+      <!--fetech cards----->
+    </div>
+  </div>
+  <!--- Suggestion cards-->
+  <div class="container mb-5">
+    <h2 style="color: #2196f3;" class="m-3">Feedback from Feedbacker</h2>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <p class="card-text text-warning border border-warning rounded-2 p-3 placeholder-glow" id="placeholder3">
+        <span class="placeholder col-7"></span>
+        <span class="placeholder col-4"></span>
+        <span class="placeholder col-4"></span>
+        <span class="placeholder col-6"></span>
+        <span class="placeholder col-8"></span>
+        <a href="#" tabindex="-1" class="btn btn-warning disabled placeholder col-4 mt-3" aria-hidden="true"></a>
+      </p>
+      <div class="carousel-inner" id="fetchFeedback">
+        <!--fetching feedback here -->
+      </div>
+    </div>
+  </div>
+  <!---Other Universty references-->
+  <div class="container mb-5">
+    <div class="row">
+      <h2 style="color: #2196f3;float: left;display: block;" class="m-3">Other University Courses Reference</h2>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #2196f3;">DBATU Computer Engineering</h5>
+            <div class="description-container  p-2" style="max-height: 50px; overflow-y: auto;">
+              <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                Under
+                Graduate
+                B-Tech for Electronic and Telecommunication with
+                effect from the Academic 2020-2021</p>
+            </div>
+            <a href="https://dbatu.ac.in/wp-content/uploads/2023/08/Syllabus-for-Computer-Sceince-Computer-Engineering-wef-2021.pdf"
+              class="btn btn-primary  mt-4">See Course</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #2196f3;">DBATU Electronics and Engineering</h5>
+            <div class="description-container p-2" style="max-height: 50px; overflow-y: auto;">
+              <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                Under
+                Graduate
+                B-Tech for Electronic and Telecommunication with
+                effect from the Academic 2020-2021</p>
+            </div>
+            <a href="https://dbatu.ac.in/wp-content/uploads/2023/07/EXTC-UG-SYLLABUS.pdf"
+              class="btn btn-primary  mt-4">See
+              Course</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="description-container" style="max-height: 50px; overflow-x: auto;">
+              <h5 class="card-title" style="color: #2196f3;">DBATU Mechanical Automation
+                Engineering</h5>
+            </div>
+            <div class="description-container p-2" style="max-height: 50px; overflow-x: auto;">
+              <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                Under
+                Graduate
+                B-Tech for Mechanical Engineering with
+                effect from the Academic 2023-2024</p>
+              </p>
+            </div>
+            <a href="https://dbatu.ac.in/wp-content/uploads/2023/07/EXTC-UG-SYLLABUS.pdf"
+              class="btn btn-primary mt-4">See
+              Course</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCskC8FgXJxC48XzpCDRVmE9Kng2OyAbpk",
+      authDomain: "open-curriculum-de09c.firebaseapp.com",
+      projectId: "open-curriculum-de09c",
+      storageBucket: "open-curriculum-de09c.appspot.com",
+      messagingSenderId: "425347625827",
+      appId: "1:425347625827:web:5603db72da26bfe87ad956",
+      measurementId: "G-S9YVNWDKBT"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+    const db = getFirestore(app);
+    retrieveDataById();
+    async function retrieveDataById() {
+      document.getElementById("placeholder3").style.display = "block"
+      try {
+        const dataId = localStorage.getItem("dataId");
+        const docRef = doc(db, 'Teachers', dataId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const templateKeys = Object.keys(data).filter(key => key.includes('Course'));
+          templateKeys.forEach(element => {
+            console.log(element)
+            getTemplateData(element)
+            fetchFeedback(element)
+          });
+        }
+        else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error('Error retrieving data:', error);
+      }
+    }
+
+    async function getTemplateData(element) {
+      document.getElementById("placeholder1").style.display = "block"
+      document.getElementById("fetchCards").style.display = "none"
+      try {
+        const docRef1 = await getDoc(doc(db, "Teachers", localStorage.getItem("dataId"), element, "Course"));
+        const docRef2 = await getDoc(doc(db, "Teachers", localStorage.getItem("dataId")));
+        if (docRef2.exists) {
+          var data2 = docRef2.data();
+          var data1 = docRef1.data();
+          var formData = JSON.stringify({
+            "description ": data1.description
+          });
+          document.getElementById("placeholder1").style.display = "none"
+          document.getElementById("fetchCards").style.display = "block"
+          document.getElementById("fetchCards").innerHTML += `<div class="card border border-2 border-primary-subtle" style="display: inline-block;width: 300px;margin-right: 10px;">
+          <div class="card-body">
+          <h5 class="card-title" style="color: #2196f3;overflow-x:hidden">${data2.instructorName}</h5>
+          <p class="card-text">Instructor :${data2.instructorDepartment}</p>
+          <p class="card-text">Catergory :${data2.instructorDepartment} </p>
+          <div><p class="card-text" style="height: 100px; overflow-y: auto;text-align: justify;">Description : ${data2.instructorInstitute}</div>
+          <a href="#" class="btn btn-primary mt-2" id="${element}" onclick="sessionStorage.setItem('tempCardId', '${element}');window.location.href='createCourse.html'">See Course</a>
+        </div>`
+        } else {
+          document.getElementById("fetchCards").innerHTML = `<div class="container mt-4 mb-5">
+            <h2 style="color: #2196f3;" class="m-3">No Course Found</h2>
+            </div>`
+          document.getElementById("placeholder1").style.display = "none"
+          console.log("Data not found")
+        }
+      } catch (error) {
+        document.getElementById("placeholder1").style.display = "none"
+        console.log(error);
+      }
+    }
+
+    document.getElementById("createCourse").addEventListener("click", () => {
+      var createCourseName = "Course" + Math.floor(Math.random() * 1000);
+      localStorage.setItem("CourseName", createCourseName);
+      window.location.replace("createCourse.html");
+    })
+
+    document.getElementById("acceptInvitaion").addEventListener("click", async () => {
+      const dataRef = await getDoc(doc(db, "Teachers", localStorage.getItem("dataId"), "invitations", "invite"));
+      const data = dataRef.data();
+      for (const key in data) {
+        document.getElementById("fetchInvitations").innerHTML += `
+        <button type="button" class="list-group-item list-group-item-action" aria-current="true" onclick="sessionStorage.setItem('CoursName','${key}');sessionStorage.setItem('inviter','${data[key]}')">Course ID :${key}
+        </button>`
+      }
+    })
+
+    sessionStorage.setItem('CoursName', null);
+    sessionStorage.setItem('inviter', null)
+
+    let time = setInterval(() => {
+      if (sessionStorage.getItem("CourseName") != "null" && sessionStorage.getItem("inviter") != "null") {
+        alert("Invitation accepted successfully");
+        window.location.replace("createCourse.html")
+        clearInterval(time)
+      }
+    }, 1000)
+
+    async function fetchFeedback(element) {
+      document.getElementById("placeholder3").style.display = "block"
+      try {
+        const docRef1 = doc(db, "Teachers", localStorage.getItem("dataId"), element, "Course");
+        const docSnap1 = await getDoc(docRef1);
+        var data1 = docSnap1.data();
+        if (data1.suggestion !== "undefined") {
+          document.getElementById("placeholder3").style.display = "none"
+          var formData = JSON.stringify({
+            description: data1.description
+          })
+           document.getElementById("fetchFeedback").innerHTML += `
+          <div class="carousel-item active">
+          <div class="card border border-2 border-warning" style="max-width:18 rem;">
+            <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+              <h5 class="card-title">Curriculam ID : ${element}</h5>
+              <p class="card-text" style="height: 100px; overflow-y: auto;text-align: justify;"> Suggestion : 
+              ${data1.suggestion}
+              </p>
+              <a href="#" class="btn btn-outline-warning" id=${element}
+              onclick="sessionStorage.setItem('tempCardId','${element}'); window.location.href='createCourse.html'">Do
+                Changes</a>
+            </div>
+          </div>
+          </div>`
+        } else {
+          document.getElementById("placeholder3").style.display = "none"
+          document.getElementById("fetchFeedback").innerHTML = `<div class="container mt-4 mb-5 text-warning">
+            <h2 style="color: #2196f3;text-align:center" class="m-3">No Suggestions Found</h2>
+            </div>`
+          console.log("Unable to fetch suggestion")
+        }
+      } catch (error) {
+        document.getElementById("placeholder3").style.display = "none"
+        console.log(error);
+      }
+    }
+
+    document.getElementById("yourTask").addEventListener("click", async () => {
+      const dataRef = await getDoc(doc(db, "Teachers", localStorage.getItem("dataId"), "courseAssigned", "assign"));
+      console.log(dataRef.data());
+      const data = dataRef.data();
+      for (const key in data) {
+        document.getElementById("fetchTask").innerHTML += `
+      <div class="card border-success mb-3" style="max-width: 18rem;">
+    <div class="card-header">Task ID :${key}</div>
+    <div class="card-body text-success">
+    <a href="${data[key]}" class="btn btn-success">Download Task</a>
+    </div>
+     </div>`
+      }
+    })
+
+    document.getElementById("sendInvitation").addEventListener("click", async () => {
+      sessionStorage.setItem('inviteTo', null)
+      let time = setInterval(async () => {
+        if (sessionStorage.getItem("inviteTo") != "null") {
+          var courseName = localStorage.getItem("CourseName");
+          const data = {
+            [courseName]: localStorage.getItem("dataId")
+          }
+          await setDoc(doc(db, "Teachers", sessionStorage.getItem("inviteTo"), "invitations", "invite"), data, { merge: true })
+          alert("Invitation send successfully");
+          clearInterval(time);
+        }
+      }, 1000)
+      const dataRef = await getDocs(collection(db, "Teachers"));
+      dataRef.forEach((doc) => {
+        console.log(doc.data());
+        var data = doc.data()
+        document.getElementById("fetchProfile").innerHTML += `
+      <div class="card border-warning m-3" style="max-width: 18rem;">
+  <div class="card-header">${data.instructorName}</div>
+  <div class="card-body">
+    <h5 class="card-title">${data.instructorInstitute}</h5>
+    <p class="card-text">Department: ${data.instructorDepartment}</p>
+    <p class="card-text">Experience: ${data.instructorExperience}</p>
+    <button type="button" class="btn btn-warning" onclick="sessionStorage.setItem('inviteTo','${doc.id}')">Invite</button>
+  </div>
+</div>`
+      })
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>

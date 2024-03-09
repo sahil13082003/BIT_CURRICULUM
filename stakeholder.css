@@ -1,0 +1,88 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Styling for the sections */
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+  padding-top: 200px;
+  height: 500px; /* Corrected the missing unit */
+  padding-left: 10px;
+  padding-right: 10px; /* Adjust this for the desired height */
+}
+
+.section {
+  text-align: center;
+  padding: 40px;
+  width: 33.23%; 
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Example specific styling for each section */
+.section-1 {
+  background-color: #d7ddca;
+  height: 700px;
+}
+
+.section-2 {
+  background-color: #9AD0C2;
+  height: 700px;
+}
+
+.section-3 {
+  background-color: #ECF4D6;
+  height: 700px;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  background-color: brown;
+}
+
+.button1 {
+  margin-top: 70px;
+}
+
+.button2 {
+  margin-top: 7px;
+}
+
+.button3 {
+  margin-top: 50px;
+}
+
+.my-link {
+  color: black; /* Link text color */
+  text-decoration: underline; /* Underline the link */
+}
+
+/* Style for the link when hovered over */
+.my-link:hover {
+  color: red; /* Change text color on hover */
+}
+
+.section h2 {
+  color: #265073;
+}

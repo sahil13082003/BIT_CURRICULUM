@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BOS Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* Hide scrollbar for Chrome, Safari, and newer Edge */
+        .description-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Optional: Style scrollbar for Firefox */
+        .description-container {
+            scrollbar-width: none;
+        }
+
+        .text-shadow {
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg"
+        style="background-image: linear-gradient(to right,rgb(255, 255, 255),#f0a337);color: white;">
+        <div class="container-fluid">
+            <div>
+            <img src="AICTE Logo.png" width="100px" height="auto">
+            
+        </div>
+            <h4 class="text-shadow">Administrator Dashboard</h4>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="dropdown-center dropdown-menu-dark" style="margin-right: 50px;">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <span><img src="man.png" width="30px" height="30px"></span>
+                </button>
+                <ul class="dropdown-menu" style="background-color: #f0a337;">
+                    <li><a class="dropdown-item" href="profile.html"><b>Profile</b></a></li>
+                    <li><a class="dropdown-item" href="signUp.html"><b>Sign up</b></a></li>
+                    <li><a class="dropdown-item" href="signin.html"><b>Sign in</b></a></li>
+                    <li><a class="dropdown-item text-danger" href="#" id="signOut"><b>Sign out</b></a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg"
+        style="background-image: linear-gradient(to right,white,#f0a337);color: white;">
+        <button type="button" class="btn btn-outline-primary m-2" onclick="window.location.href='draft.html'">Create
+            Draft</button>
+        <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Assign Curriculam Developer</button>
+        <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+            id="findCollege">Find College</button>
+        <!-- <button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal3"
+            id="findCollege">Approved Curriculam</button> -->
+        </div>
+    </nav>
+
+
+    <!-- Modal for Assign Curriculam Developer-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="fetchProfile">
+                        <!---Profile will fetch here-->
+                    </div>
+                    <div class="input-group container" id="upload" style="visibility:hidden;">
+                        <input type="file" class="form-control" id="pdfInput" accept=".pdf"
+                            aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <button class="btn btn-outline-secondary" style="display: none;color: red;" type="button"
+                            id="text">Uploading...</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Search College-->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Find College</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="fetchCollege">
+                        <!---college will fetch here-->
+                    </div>
+                    <div class="input-group container" id="uploadpdf" style="visibility:hidden;">
+                        <input type="file" class="form-control" id="pdf" accept=".pdf"
+                            aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <button class="btn btn-outline-secondary" style="display: none;color: red;" type="button"
+                            id="text1">Uploading...</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---Approved Curriculam modal-->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Approved Curriculam</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="fetchApprovedCurriculam">
+                        <!---Approved Curriculam will fetch here-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-4 mb-5">
+        <h2 style="color: #2196f3;" class="m-3">Courses for Approval </h2>
+        <div id="placeholder1">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card" aria-hidden="true">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                                <span class="placeholder col-8"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" aria-hidden="true">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                                <span class="placeholder col-8"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" aria-hidden="true">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                                <span class="placeholder col-8"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrolling-container" style="overflow-x: auto;white-space: nowrap;display: none;" id="fetchCards">
+            <!--fetech cards----->
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <h2 style="color: #2196f3;float: left;display: block;" class="m-3">Other Institutes Courses
+                Reference</h2>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #2196f3;">DBATU Computer Engineering</h5>
+                        <div class="description-container  p-2" style="max-height: 50px; overflow-y: auto;">
+                            <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                                Under
+                                Graduate
+                                B-Tech for Electronic and Telecommunication with
+                                effect from the Academic 2020-2021</p>
+                        </div>
+                        <a href="https://dbatu.ac.in/wp-content/uploads/2023/08/Syllabus-for-Computer-Sceince-Computer-Engineering-wef-2021.pdf"
+                            class="btn btn-primary  mt-4">See Course</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #2196f3;">DBATU Electronics and Engineering</h5>
+                        <div class="description-container p-2" style="max-height: 50px; overflow-y: auto;">
+                            <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                                Under
+                                Graduate
+                                B-Tech for Electronic and Telecommunication with
+                                effect from the Academic 2020-2021</p>
+                        </div>
+                        <a href="https://dbatu.ac.in/wp-content/uploads/2023/07/EXTC-UG-SYLLABUS.pdf"
+                            class="btn btn-primary  mt-4">See
+                            Course</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="description-container" style="max-height: 50px; overflow-x: auto;">
+                            <h5 class="card-title" style="color: #2196f3;">DBATU Mechanical Automation
+                                Engineering</h5>
+                        </div>
+                        <div class="description-container p-2" style="max-height: 50px; overflow-x: auto;">
+                            <p class="card-text" style="text-align: justify;">Proposed Curriculam
+                                Under
+                                Graduate
+                                B-Tech for Mechanical Engineering with
+                                effect from the Academic 2023-2024</p>
+                            </p>
+                        </div>
+                        <a href="https://dbatu.ac.in/wp-content/uploads/2023/07/EXTC-UG-SYLLABUS.pdf"
+                            class="btn btn-primary mt-4">See
+                            Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCskC8FgXJxC48XzpCDRVmE9Kng2OyAbpk",
+            authDomain: "open-curriculum-de09c.firebaseapp.com",
+            projectId: "open-curriculum-de09c",
+            storageBucket: "open-curriculum-de09c.appspot.com",
+            messagingSenderId: "425347625827",
+            appId: "1:425347625827:web:5603db72da26bfe87ad956",
+            measurementId: "G-S9YVNWDKBT"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        retrieveCourseName();
+        async function retrieveCourseName() {
+            document.getElementById("placeholder1").style.display = "block"
+            document.getElementById("fetchCards").style.display = "none"
+            try {
+                const querySnapshot = await getDocs(collection(db, "HoD", localStorage.getItem("dataId"), "forApproval"));
+                querySnapshot.forEach((doc) => {
+                    retrieveTeacherDataId(doc.id)
+                });
+            } catch (error) {
+                console.error('Error retrieving of Course Name:', error);
+            }
+        }
+
+        async function retrieveTeacherDataId(courseName) {
+            try {
+                const querySnapshot = await getDocs(collection(db, "Teachers"));
+                querySnapshot.forEach((doc) => {
+                    getTemplateData(courseName, doc.id)
+                });
+            } catch (error) {
+                console.error('Error retrieving of Teacher Data Id :', error);
+            }
+        }
+
+        async function getTemplateData(element, id) {
+            try {
+                const docRef1 = doc(db, "Teachers", id, element, "Course");
+                const docRef2 = doc(db, "Teachers", id);
+                const docSnap1 = await getDoc(docRef1);
+                const docSnap2 = await getDoc(docRef2);
+                if (docSnap1.exists() && (docSnap1.data().approval == "pending" || docSnap1.data().approval == "Feedback Send")) {
+                    document.getElementById("placeholder1").style.display = "none";
+                    document.getElementById("fetchCards").style.display = "block";
+
+                    if (docSnap1.data().approval === "pending") {
+                        var data1 = docSnap1.data();
+                        var data2 = docSnap2.data();
+                        document.getElementById("fetchCards").innerHTML += `<div class="card shadow-lg border border-primary-subtle" style="display: inline-block; width: 300px; margin-right: 10px;">
+          <div class="card-body"> 
+        <span id="badge1" class="badge text-bg-danger">${data1.approval}</span>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <h5 class="card-title p-1" style="color: #2196f3;">${data2.instructorName}</h5>
+        </div>       
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Instructor: ${data2.instructorInstitute}</p>
+        </div>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Category: ${data2.instructorDepartment}</p>
+        </div>
+        <div class="description-container h-2" style="max-width: 100%; overflow-y: auto;">
+            <p class="card-text p-1">Experience: ${data2.instructorExperience}</p>
+        </div>
+        <p class="card-text">Rating: 5 star</p>
+        <a href="#" class="btn btn-primary" id="${element}" onclick="localStorage.setItem('tempCardId', '${element}');localStorage.setItem('tempDataId', '${id}'); window.location.href='templateForApproval.html'">See Course</a>
+    </div>
+</div>`
+                    } else {
+                        if (docSnap1.data().approval === "Feedback Send") {
+                            var data1 = docSnap1.data();
+                            var data2 = docSnap2.data();
+                            document.getElementById("fetchCards").innerHTML += `<div class="card shadow-lg border border-primary-subtle" style="display: inline-block; width: 300px; margin-right: 10px;">
+          <div class="card-body"> 
+        <span id="badge1" class="badge text-bg-warning">${data1.approval}</span>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <h5 class="card-title p-1" style="color: #2196f3;">${data2.instructorName}</h5>
+        </div>       
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Instructor: ${data2.instructorInstitute}</p>
+        </div>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Category: ${data2.instructorDepartment}</p>
+        </div>
+        <div class="description-container h-2" style="max-width: 100%; overflow-y: auto;">
+            <p class="card-text p-1">Experience: ${data2.instructorExperience}</p>
+        </div>
+        <p class="card-text">Rating: 5 star</p>
+        <a href="#" class="btn btn-primary" id="${element}" onclick="localStorage.setItem('tempCardId', '${element}');localStorage.setItem('tempDataId', '${id}'); window.location.href='templateForApproval.html'">See Course</a>
+    </div>
+</div>`
+                        } else {
+                            console.log("No data found!!!")
+                        }
+
+                    }
+                }
+            } catch (error) {
+                document.getElementById("placeholder1").style.display = "none"
+                document.getElementById("fetchCards").style.display = "none"
+                console.error('Error retrieving cards:', error);
+            }
+        }
+
+        fetchProfile();
+        async function fetchProfile() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "Teachers"));
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data()
+                    document.getElementById("fetchProfile").innerHTML += `
+                     <div class="col">
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${data.instructorName}</h5>
+                            <p class="card-text">${data.instructorInstitute}
+                            </p>
+                            <p class="card-text">Branch: ${data.instructorDepartment}
+                            </p>
+                            <p class="card-text">Experience: ${data.instructorExperience}
+                            </p>
+                            <a href="#" class="btn btn-primary" id="${doc.id}" onclick="handleAssignClick('${doc.id}')">Assign</a>
+                        </div>
+                    </div>
+                    </div>
+`
+                });
+            } catch (error) {
+                console.error('Error retrieving of Teacher Data Id :', error);
+            }
+        }
+        const pdfInput = document.getElementById('pdfInput');
+        pdfInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            const fileName = file.name;
+            console.log(fileName)
+            document.getElementById("text").style.display = "block"
+            const pdfBlob = new Blob([file], { type: "application/pdf" });
+
+            const storageRef = ref(storage, "pdfs/curriculum_form.pdf");
+            await uploadBytes(storageRef, pdfBlob);
+
+            // Get the download URL
+            const downloadURL = await getDownloadURL(storageRef);
+
+            // Store the URL in Firestore
+            const randomCourseName = "Course" + Math.floor(Math.random() * 1000);
+            const dataId = sessionStorage.getItem("tempCardId");
+            const data = {
+                [randomCourseName]: downloadURL
+            };
+
+            try {
+                await setDoc(
+                    doc(db, "Teachers", dataId, "courseAssigned", "assign"),
+                    data,
+                    { merge: true }
+                )
+                document.getElementById("text").style.color = "green";
+                document.getElementById("text").innerHTML = "Successfull"
+                alert("PDF send successfulyy");
+            } catch (error) {
+                console.error(error);
+                document.getElementById("text").style.display = "none"
+                alert("Error generating or uploading PDF!");
+            }
+        });
+
+
+        document.getElementById("findCollege").addEventListener("click", async () => {
+            const dataRef = await getDocs(collection(db, "Student"));
+            dataRef.forEach((doc) => {
+                console.log(doc.data())
+                var data = doc.data();
+                document.getElementById("fetchCollege").innerHTML += `
+                <div class="col">
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${data.instituteName}</h5>
+                            <p class="card-text">${data.collegeWebsite}
+                            </p>
+                            <p class="card-text">Unique ID: ${data.uniqueNumber}
+                            </p>
+                            <a href="#" class="btn btn-primary" onclick="sessionStorage.setItem('tempCardId','${doc.id}')">Send</a>
+                        </div>
+                    </div>
+                    </div>
+                `
+            })
+        })
+
+        fetchApprovedCurriculam();
+        function fetchApprovedCurriculam() {
+            retrieveApprovedCourseName()
+        }
+
+        async function retrieveApprovedCourseName() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "HoD", localStorage.getItem("dataId"), "forApproval"));
+                querySnapshot.forEach((doc) => {
+                    console.log("method 1")
+                    retrieveTeacherDataIdApproved(doc.id);
+                });
+            } catch (error) {
+                console.error('Error retrieving of Course Name:', error);
+            }
+        }
+
+        async function retrieveTeacherDataIdApproved(courseName) {
+            try {
+                const querySnapshot = await getDocs(collection(db, "Teachers"));
+                querySnapshot.forEach((doc) => {
+                    console.log("method 2")
+                    getApprovedCourses(courseName, doc.id)
+                });
+            } catch (error) {
+                console.error('Error retrieving of Teacher Data Id :', error);
+            }
+        }
+
+
+        async function getApprovedCourses(element, id) {
+            try {
+                const docRef1 = doc(db, "Teachers", id, element, "Course");
+                const docRef2 = doc(db, "Teachers", id);
+                const docSnap1 = await getDoc(docRef1);
+                const docSnap2 = await getDoc(docRef2);
+                if (docSnap1.exists()) {
+                    if (docSnap1.data().approval === "approved") {
+                        var data1 = docSnap1.data();
+                        var data2 = docSnap2.data();
+                        document.getElementById("fetchApprovedCurriculam").innerHTML += `<div class="card shadow-lg border border-primary-subtle" style="display: inline-block; width: 300px; margin-right: 10px;">
+          <div class="card-body"> 
+        <span id="badge1" class="badge text-bg-danger">${data1.approval}</span>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <h5 class="card-title p-1" style="color: #2196f3;">${data2.instructorName}</h5>
+        </div>       
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Instructor: ${data2.instructorInstitute}</p>
+        </div>
+        <div class="description-container" style="max-height: 50px; overflow-y: auto;">
+            <p class="card-text p-1">Category: ${data2.instructorDepartment}</p>
+        </div>
+        <div class="description-container h-2" style="max-width: 100%; overflow-y: auto;">
+            <p class="card-text p-1">Experience: ${data2.instructorExperience}</p>
+        </div>
+        <p class="card-text">Rating: 5 star</p>
+        <a href="#" class="btn btn-primary" id="${element}" onclick="localStorage.setItem('tempCardId', '${element}');localStorage.setItem('tempDataId', '${id}'); window.location.href='downloadCurriculam.html'">See Course</a>
+    </div>
+</div>`
+                    }
+                }
+            } catch (error) {
+                console.error('Error retrieving cards:', error);
+            }
+        }
+
+
+        sessionStorage.setItem('tempCardId', null)
+        let time = setInterval(() => {
+            if (sessionStorage.getItem("tempCardId") != "null") {
+                document.getElementById("fetchCollege").style.display = "none";
+                document.getElementById("uploadpdf").style.visibility = "visible";
+            }
+        })
+
+        pdf.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            const fileName = file.name;
+            console.log(fileName)
+            document.getElementById("text1").style.display = "block"
+            const pdfBlob = new Blob([file], { type: "application/pdf" });
+
+            const storageRef = ref(storage, "pdfs/curriculum_form.pdf");
+            await uploadBytes(storageRef, pdfBlob);
+
+            // Get the download URL
+            const downloadURL = await getDownloadURL(storageRef);
+
+            // Store the URL in Firestore
+            const randomCourseName = "Course" + Math.floor(Math.random() * 1000);
+            const dataId = sessionStorage.getItem("tempCardId");
+            const data = {
+                [randomCourseName]: downloadURL
+            };
+
+            try {
+                await setDoc(
+                    doc(db, "Student", dataId, "curriculaSend", "curriculam"),
+                    data,
+                    { merge: true }
+                )
+                document.getElementById("text1").style.color = "green";
+                document.getElementById("text1").innerHTML = "Successfull"
+                alert("PDF send successfulyy");
+            } catch (error) {
+                console.error(error);
+                document.getElementById("text1").style.display = "none"
+                alert("Error generating or uploading PDF!");
+            }
+        });
+
+    </script>
+    <script>
+        function handleAssignClick(id) {
+            document.getElementById("fetchProfile").style.display = "none";
+            document.getElementById("upload").style.visibility = "visible";
+            sessionStorage.setItem("tempCardId", id);
+        }
+        document.getElementById("signOut").addEventListener("click", () => {
+            localStorage.removeItem("dataId");
+            alert("Sign out successfully")
+            window.location.reload(true)
+        })
+
+        if (localStorage.getItem("dataId") == "null") {
+            alert("Sign in required !!!");
+            window.location.replace("signin.html")
+        }
+    </script>
+</body>
+
+</html>
